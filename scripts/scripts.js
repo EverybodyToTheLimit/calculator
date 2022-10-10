@@ -10,6 +10,9 @@ function operate(operator, a, b){
     else if (operator == "/") {return divide(a,b)}
     }
 
+let currentInput = document.getElementById('display');
+currentOperator = "";
+
 //Add event listener for button click and play a sound
 let click = new Audio();
 click.src = "./img/calc1.wav"
@@ -17,7 +20,9 @@ document.querySelectorAll(".calc-button").forEach(item => {
     item.addEventListener('click', () => {
         click.currentTime = 0;
         click.play()
+        currentInput.innerHTML += item.innerHTML;
     })
 })
 // let displayButton = document.getElementById('display');
 // displayButton.addEventListener('click', () => {click.play()});
+
