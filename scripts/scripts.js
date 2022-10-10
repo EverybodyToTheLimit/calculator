@@ -1,4 +1,4 @@
-
+//Declare basic functions of calculator
 function add (a, b){return a+b}
 function subtract(a, b){return a-b}
 function multiply(a, b){return a*b}
@@ -9,3 +9,15 @@ function operate(operator, a, b){
     else if (operator == "*") {return multiply(a,b)}
     else if (operator == "/") {return divide(a,b)}
     }
+
+//Add event listener for button click and play a sound
+let click = new Audio();
+click.src = "./img/calc1.wav"
+document.querySelectorAll(".calc-button").forEach(item => {
+    item.addEventListener('click', () => {
+        click.currentTime = 0;
+        click.play()
+    })
+})
+// let displayButton = document.getElementById('display');
+// displayButton.addEventListener('click', () => {click.play()});
