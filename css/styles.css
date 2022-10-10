@@ -26,12 +26,12 @@
     height: 60%;
 }
 
-.calc-button, .calc-button-operator{
+.calc-button, .calc-button-operator, .calc-button-operator-equal{
    
     width: 12%;
     height: 0%;
     padding-bottom: 12%;
-    background-color: rgb(0, 255, 255);
+    /* background-color: rgb(0, 255, 255); */
     font-size: 0px;
 
 }
@@ -99,9 +99,17 @@ body, html {
     margin-left: 22%;
     margin-top: 34%;
     width: 55%;
+    max-width: 17ch;
     height: 0%;
     color: red;
     font-size: 2.5vw;
+    font-family: digital-clock-font;
     direction: rtl;
     /* background-color: rgb(0, 255, 255); */
 }
+
+@font-face{
+    font-family:'digital-clock-font';
+    src: url('../img/digital-7.ttf');
+   }
+   
