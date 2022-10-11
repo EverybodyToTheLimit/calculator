@@ -55,12 +55,15 @@ document.querySelectorAll(".calc-button-operator").forEach(item => {
         if (lastClick === "operator"){
             return;
         }
-        else if (item.textContent === "c" || item.textContent === "CE") {
+        else if (item.textContent === "CE") {
             currentOperator = "";
             valueA = "";
             valueB = "";
             lastClick = "";
             currentInput.textContent = "";
+        }
+        else if (item.textContent === "c") {
+            currentInput.textContent = currentInput.textContent.slice(0,-1);
         }
         else if (currentOperator != "") {
             valueB = currentInput.textContent
