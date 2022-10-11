@@ -1,13 +1,21 @@
 //Declare basic functions of calculator
 function add (a, b){return a+b}
 function subtract(a, b){return a-b}
-function multiply(a, b){return Math.round((a*b) * 100) / 100}
-function divide(a, b){return Math.round((a/b) * 100) / 100}
+function multiply(a, b){return (Math.round((a*b) * 100) / 100).toFixed(2)}
+function divide(a, b){return (Math.round((a/b) * 100) / 100).toFixed(2)}
 function operate(operator, a, b){
     if (operator == "+") {return add(a,b)}
     else if (operator == "-") {return subtract(a,b)}
     else if (operator == "x") {return multiply(a,b)}
-    else if (operator == "/") {return divide(a,b)}
+    else if (operator == "/") {
+        if (b === 0) {
+        return "The world imploded"
+        }
+        else {
+        let result_div = divide(a,b)
+        return result_div;
+        }
+    }
     }
 
 let currentInput = document.getElementById('display');
@@ -25,6 +33,9 @@ document.querySelectorAll(".calc-button").forEach(item => {
         click.currentTime = 0;
         click.play()
         if (currentInput.textContent.length === 15) {
+            return;
+        }
+        else if (item.textContent === "." && currentInput.textContent.includes(".")){
             return;
         }
         else if (lastClick === "button" || lastClick === "") {
@@ -53,13 +64,13 @@ document.querySelectorAll(".calc-button-operator").forEach(item => {
         }
         else if (currentOperator != "") {
             valueB = currentInput.textContent
-            let result = operate(currentOperator,parseInt(valueA), parseInt(valueB));
+            let result = operate(currentOperator,valueA, valueB);
             if ((Math.floor(Math.log10(result))+1) >= 15) {
                 currentInput.textContent = "NUMBER TOO BIG!"
                 return;
             }
             else {
-            currentInput.textContent = operate(currentOperator,parseInt(valueA), parseInt(valueB))
+            currentInput.textContent = operate(currentOperator,valueA, valueB)
             currentOperator = item.textContent;
             valueA = currentInput.textContent;
             valueB = ""; 
@@ -80,7 +91,8 @@ document.querySelectorAll(".calc-button-operator-equal").forEach(item => {
     item.addEventListener('click', () => {
         click.currentTime = 0;
         click.play()
-        let result = operate(currentOperator,parseInt(valueA), parseInt(valueB));
+        valueB = currentInput.textContent
+        let result = operate(currentOperator,valueA, valueB);
         if (valueA === "") {
             return;
         }
@@ -90,9 +102,8 @@ document.querySelectorAll(".calc-button-operator-equal").forEach(item => {
         }
         else {
         valueB = currentInput.textContent
-        currentInput.textContent = operate(currentOperator,parseInt(valueA), parseInt(valueB))
+        currentInput.textContent = operate(currentOperator,valueA, valueB)
         valueA = currentInput.textContent; 
-        valueB = "";
         currentOperator = "";
         lastClick = "equal"
         }
