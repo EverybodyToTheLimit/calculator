@@ -26,6 +26,13 @@ let valueA = "";
 let valueB = "";
 let lastClick = "";
 
+//Shake function
+function shakeDaRoom() {
+    let calcCont = document.getElementById('calc');
+    calcCont.classList.remove('shake');
+    calcCont.classList.add('shake');
+}
+
 //Add event listener for button click and play a sound
 let click = new Audio();
 click.src = "./img/calc1.wav"
@@ -72,6 +79,7 @@ document.querySelectorAll(".calc-button-operator").forEach(item => {
             let result = operate(currentOperator,valueA, valueB);
             if ((Math.floor(Math.log10(result))+1) >= 15) {
                 currentInput.textContent = "NUMBER TOO BIG!"
+                shakeDaRoom();
                 return;
             }
             else {
@@ -103,6 +111,7 @@ document.querySelectorAll(".calc-button-operator-equal").forEach(item => {
         }
         else if ((Math.floor(Math.log10(result))+1) >= 15) {
             currentInput.textContent = "NUMBER TOO BIG!"
+            shakeDaRoom();
             return;
         }
         else {
@@ -157,6 +166,7 @@ document.addEventListener('keydown', (event) => {
             let result = operate(currentOperator,valueA, valueB);
             if ((Math.floor(Math.log10(result))+1) >= 15) {
                 currentInput.textContent = "NUMBER TOO BIG!"
+                shakeDaRoom();
                 return;
             }
             else {
@@ -185,6 +195,7 @@ document.addEventListener('keydown', (event) => {
         }
         else if ((Math.floor(Math.log10(result))+1) >= 15) {
             currentInput.textContent = "NUMBER TOO BIG!"
+            shakeDaRoom();
             return;
         }
         else {
